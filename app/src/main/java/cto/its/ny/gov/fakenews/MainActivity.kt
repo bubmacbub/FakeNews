@@ -12,6 +12,7 @@ import cto.its.ny.gov.fakenews.model.Source
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     val arrayOfAticles = arrayListOf<Article>()
+    val mapOfArticles = mutableMapOf<TextView, Article>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -21,40 +22,36 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val amountOfArticles =  0 .. 5
+        val amountOfArticles = 0..5
         createArticles(amountOfArticles)
 
         addArticlesToView(amountOfArticles)
 
-        for (child in view.children)
-        {
+        for (child in view.children) {
             println("Child " + child)
-            for(vws in child.allViews)
-            {
+            for (vws in child.allViews) {
                 println("View " + vws)
             }
 
         }
 
 
-
     }
 
     private fun addArticlesToView(amountOfArticles: IntRange) {
-        for(index in amountOfArticles)
-        {
-            when(index){
-                0 ->  {
+     /*   for (index in amountOfArticles) {
+            when (index) {
+                0 -> {
                     addArticleToView(binding.textView, arrayOfAticles[index])
 
                 }
-                1 ->  {
+                1 -> {
                     addArticleToView(binding.textView2, arrayOfAticles[index])
                 }
-                2 ->  {
+                2 -> {
                     addArticleToView(binding.textView3, arrayOfAticles[index])
                 }
-                3 ->  {
+                3 -> {
                     addArticleToView(binding.textView4, arrayOfAticles[index])
                 }
 
@@ -64,24 +61,29 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+*/
+        mapOfArticles.forEach { (textView, article) ->
 
+                println("Adding " + article + " to " + textView)
+                textView.text = article.toString()
+
+        }
     }
 
     private fun addArticleToView(txtView: TextView, article: Article) {
-        var concatString:String = ""
-        var title:StringBuilder = StringBuilder(); var author=""; var srcName = "";
-        if(article?.title != null)
-        {
+        var concatString: String = ""
+        var title: StringBuilder = StringBuilder();
+        var author = "";
+        var srcName = ""
+        if (article.title != null) {
             title.append("  Title: ")
             title.append((article.title))
             concatString = concatString.plus(title.toString())
         }
-        if(article?.author != null)
-        {
+        if (article.author != null) {
             concatString = concatString.plus("  Author: ${article.author}")
         }
-        if(article?.source?.name != null)
-        {
+        if (article.source?.name != null) {
             concatString = concatString + "  Source: " + article.source?.name
         }
         txtView.text = concatString
@@ -90,12 +92,38 @@ class MainActivity : AppCompatActivity() {
     private fun createArticles(amountOfArticles: IntRange) {
 
 
-        for(index in amountOfArticles)
-        {
+        for (index in amountOfArticles) {
 //            DateTimeFormatter.ISO_INSTANT.format(Instant.now())
             val userName = "user" + index
-            val src = Source(name="Newspaper" + index)
-            var atcl = Article(source=src,author="author " + index, title="Title " + index, url="http://google.com", publishedAt ="just now")
+            val src = Source(name = "Newspaper" + index)
+            var atcl = Article(
+                source = src,
+                author = "author " + index,
+                title = "Title " + index,
+                url = "http://google.com",
+                publishedAt = "just now"
+            )
+            
+            //When using this map there is no need to figure out what article binds with what view
+            when (index) {
+                0 -> {
+                    mapOfArticles.put(binding.textView, atcl)
+                }
+                1 -> {
+                    mapOfArticles.put(binding.textView2, atcl)
+                }
+                2 -> {
+                    mapOfArticles.put(binding.textView3, atcl)
+                }
+                3 -> {
+                    mapOfArticles.put(binding.textView4, atcl)
+                }
+                4 -> {
+                    mapOfArticles.put(binding.textView5, atcl)
+                }
+            }
+
+
             arrayOfAticles.add(atcl)
         }
 
