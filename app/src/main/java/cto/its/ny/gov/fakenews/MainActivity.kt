@@ -2,13 +2,12 @@ package cto.its.ny.gov.fakenews
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.core.view.allViews
 import androidx.core.view.children
 import cto.its.ny.gov.fakenews.databinding.ActivityMainBinding
 import cto.its.ny.gov.fakenews.model.Article
 import cto.its.ny.gov.fakenews.model.Source
-import java.time.Instant
-import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -46,25 +45,46 @@ class MainActivity : AppCompatActivity() {
         {
             when(index){
                 0 ->  {
-                    binding.textView.text=arrayOfAticles[index]?.title
+                    addArticleToView(binding.textView, arrayOfAticles[index])
+
                 }
                 1 ->  {
-                   binding.textView2.text=arrayOfAticles[index]?.title
+                    addArticleToView(binding.textView2, arrayOfAticles[index])
                 }
                 2 ->  {
-                   binding.textView3.text=arrayOfAticles[index]?.title
+                    addArticleToView(binding.textView3, arrayOfAticles[index])
                 }
                 3 ->  {
-                    binding.textView4.text=arrayOfAticles[index]?.title
+                    addArticleToView(binding.textView4, arrayOfAticles[index])
                 }
 
                 else -> {
-                   binding.textView5.text=arrayOfAticles[index]?.title
+                    addArticleToView(binding.textView5, arrayOfAticles[index])
                 }
             }
 
         }
 
+    }
+
+    private fun addArticleToView(txtView: TextView, article: Article) {
+        var concatString:String = ""
+        var title:StringBuilder = StringBuilder(); var author=""; var srcName = "";
+        if(article?.title != null)
+        {
+            title.append("  Title: ")
+            title.append((article.title))
+            concatString = concatString.plus(title.toString())
+        }
+        if(article?.author != null)
+        {
+            concatString = concatString.plus("  Author: ${article.author}")
+        }
+        if(article?.source?.name != null)
+        {
+            concatString = concatString + "  Source: " + article.source?.name
+        }
+        txtView.text = concatString
     }
 
     private fun createArticles(amountOfArticles: IntRange) {
