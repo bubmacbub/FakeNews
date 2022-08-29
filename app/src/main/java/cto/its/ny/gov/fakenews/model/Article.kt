@@ -18,15 +18,15 @@ data class Article (
 ) {
     override fun toString(): String {
         var concatString: String = ""
-        var title: StringBuilder = StringBuilder();
-        var author = "";
-        var srcName = ""
-        if (title != null) {
-            title.append("  Title: ")
-            title.append((title))
-            concatString = concatString.plus(title.toString())
+        var _title: StringBuilder = StringBuilder();
+        var _author = "";
+        var _srcName = ""
+        if (this.title != null) {
+            _title.append("  Title: ")
+            _title.append(this.title)
+            concatString = concatString.plus(_title.toString())
         }
-        if (author != null) {
+        if (_author != null) {
             concatString = concatString.plus("  Author: ${author}")
         }
         if (source?.name != null) {

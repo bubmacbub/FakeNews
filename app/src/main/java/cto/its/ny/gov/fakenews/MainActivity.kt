@@ -70,24 +70,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun addArticleToView(txtView: TextView, article: Article) {
-        var concatString: String = ""
-        var title: StringBuilder = StringBuilder();
-        var author = "";
-        var srcName = ""
-        if (article.title != null) {
-            title.append("  Title: ")
-            title.append((article.title))
-            concatString = concatString.plus(title.toString())
-        }
-        if (article.author != null) {
-            concatString = concatString.plus("  Author: ${article.author}")
-        }
-        if (article.source?.name != null) {
-            concatString = concatString + "  Source: " + article.source?.name
-        }
-        txtView.text = concatString
-    }
+//    private fun addArticleToView(txtView: TextView, article: Article) {
+//        var concatString: String = ""
+//        var title: StringBuilder = StringBuilder();
+//        var author = "";
+//        var srcName = ""
+//        if (article.title != null) {
+//            title.append("  Title: ")
+//            title.append((article.title))
+//            concatString = concatString.plus(title.toString())
+//        }
+//        if (article.author != null) {
+//            concatString = concatString.plus("  Author: ${article.author}")
+//        }
+//        if (article.source?.name != null) {
+//            concatString = concatString + "  Source: " + article.source?.name
+//        }
+//        txtView.text = concatString
+//    }
 
     private fun createArticles(amountOfArticles: IntRange) {
 
@@ -98,8 +98,8 @@ class MainActivity : AppCompatActivity() {
             val src = Source(name = "Newspaper" + index)
             var atcl = Article(
                 source = src,
-                author = "author " + index,
-                title = "Title " + index,
+                author = "author $index",
+                title = "Title $index",
                 url = "http://google.com",
                 publishedAt = "just now"
             )
@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-            arrayOfAticles.add(atcl)
+//            arrayOfAticles.add(atcl)
         }
 
 
