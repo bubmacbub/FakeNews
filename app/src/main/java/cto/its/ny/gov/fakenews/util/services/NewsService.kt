@@ -17,7 +17,8 @@ class NewsService {
                 author = "author $index",
                 title = "Title $index",
                 url = "http://google.com",
-                publishedAt = "just now"
+                publishedAt = "just now",
+                description = "some really long string that nobody cares about reading cause these are just e ipsum pluars"
             )
             arrayOfAticles.add( atcl)
 

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Article (
 
-    @SerializedName("source"      ) var source      : Source? = Source(name="Initialized"),
+    @SerializedName("source"      ) var source      : Source?,
     @SerializedName("author"      ) var author      : String = "Annonymous",
     @SerializedName("title"       ) var title       : String,
     @SerializedName("description" ) var description : String? = null,

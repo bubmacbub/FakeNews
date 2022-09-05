@@ -6,8 +6,10 @@ import android.widget.TextView
 import androidx.core.view.allViews
 import androidx.core.view.children
 import cto.its.ny.gov.fakenews.databinding.ActivityMainBinding
+import cto.its.ny.gov.fakenews.databinding.ArticleViewBinding
 import cto.its.ny.gov.fakenews.model.Article
 import cto.its.ny.gov.fakenews.util.services.NewsService
+import cto.its.ny.gov.fakenews.views.ArticleView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -25,49 +27,18 @@ class MainActivity : AppCompatActivity() {
         val nSvc = NewsService()
         arrayOfArticles = nSvc.createArticles(amountOfArticles)
 
-        addArticlesToView(amountOfArticles)
+        arrayOfArticles.forEach { artcl ->
 
-        for (child in view.children) {
-            println("Child $child")
-            for (vws in child.allViews) {
-                println("View $vws")
-            }
+                val articleView = ArticleView(this)
+                articleView.setArticle(artcl)
+                binding.articleContainer.addView(articleView)
 
         }
 
 
     }
 
-    private fun addArticlesToView(amountOfArticles: IntRange) {
-        for (index in amountOfArticles) {
-            when (index) {
-                0 -> {
-                    addArticleToView(binding.textView, arrayOfArticles[index])
 
-                }
-                1 -> {
-                    addArticleToView(binding.textView2, arrayOfArticles[index])
-                }
-                2 -> {
-                    addArticleToView(binding.textView3, arrayOfArticles[index])
-                }
-                3 -> {
-                    addArticleToView(binding.textView4, arrayOfArticles[index])
-                }
-
-                else -> {
-                    addArticleToView(binding.textView5, arrayOfArticles[index])
-                }
-            }
-
-        }
-//        mapOfArticles.forEach { (textView, article) ->
-//
-//                println("Adding " + article + " to " + textView)
-//                textView.text = article.toString()
-//
-//        }
-    }
 
     private fun addArticleToView(txtView: TextView, article: Article) {
         var concatString = ""
