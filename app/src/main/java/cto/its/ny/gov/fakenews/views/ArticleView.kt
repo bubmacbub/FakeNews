@@ -31,7 +31,8 @@ class ArticleView  @JvmOverloads constructor(
 
     fun setArticle(article: Article) {
         binding.description.text= article.description
-        binding.authorLabel.text= article.author
+        binding.author.text= article.author
+        binding.title.text = article.title
 //        setSourceName(article.source.name)
 //        setArticleTitle(article.title)
 //        setArticleAuthor(article.author)
