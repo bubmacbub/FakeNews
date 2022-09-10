@@ -6,13 +6,14 @@ import android.widget.TextView
 import androidx.core.view.allViews
 import androidx.core.view.children
 import cto.its.ny.gov.fakenews.databinding.ActivityMainBinding
+import cto.its.ny.gov.fakenews.databinding.ArticleViewBinding
 import cto.its.ny.gov.fakenews.model.Article
-import cto.its.ny.gov.fakenews.model.Source
+import cto.its.ny.gov.fakenews.util.services.NewsService
+import cto.its.ny.gov.fakenews.views.ArticleView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    val arrayOfAticles = arrayListOf<Article>()
-    val mapOfArticles = mutableMapOf<TextView, Article>()
+    private var arrayOfArticles = arrayListOf<Article>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -23,110 +24,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         val amountOfArticles = 0..5
-        createArticles(amountOfArticles)
+        val nSvc = NewsService()
+        arrayOfArticles = nSvc.createArticles(amountOfArticles)
 
-        addArticlesToView(amountOfArticles)
+        arrayOfArticles.forEach { artcl ->
 
-        for (child in view.children) {
-            println("Child " + child)
-            for (vws in child.allViews) {
-                println("View " + vws)
-            }
+                val articleView = ArticleView(this)
+                articleView.setArticle(artcl)
+                binding.articleContainer.addView(articleView)
 
         }
 
 
     }
 
-    private fun addArticlesToView(amountOfArticles: IntRange) {
-     /*   for (index in amountOfArticles) {
-            when (index) {
-                0 -> {
-                    addArticleToView(binding.textView, arrayOfAticles[index])
 
-                }
-                1 -> {
-                    addArticleToView(binding.textView2, arrayOfAticles[index])
-                }
-                2 -> {
-                    addArticleToView(binding.textView3, arrayOfAticles[index])
-                }
-                3 -> {
-                    addArticleToView(binding.textView4, arrayOfAticles[index])
-                }
 
-                else -> {
-                    addArticleToView(binding.textView5, arrayOfAticles[index])
-                }
-            }
-
+    private fun addArticleToView(txtView: TextView, article: Article) {
+        var concatString = ""
+        val title: StringBuilder = StringBuilder()
+        title.append("  Title: ")
+        title.append((article.title))
+        concatString = concatString.plus(title.toString())
+        concatString = concatString.plus("  Author: ${article.author}")
+        if (article.source?.name != null) {
+            concatString = concatString + "  Source: " + article.source?.name
         }
-*/
-        mapOfArticles.forEach { (textView, article) ->
-
-                println("Adding " + article + " to " + textView)
-                textView.text = article.toString()
-
-        }
+        txtView.text = concatString
     }
 
-//    private fun addArticleToView(txtView: TextView, article: Article) {
-//        var concatString: String = ""
-//        var title: StringBuilder = StringBuilder();
-//        var author = "";
-//        var srcName = ""
-//        if (article.title != null) {
-//            title.append("  Title: ")
-//            title.append((article.title))
-//            concatString = concatString.plus(title.toString())
-//        }
-//        if (article.author != null) {
-//            concatString = concatString.plus("  Author: ${article.author}")
-//        }
-//        if (article.source?.name != null) {
-//            concatString = concatString + "  Source: " + article.source?.name
-//        }
-//        txtView.text = concatString
-//    }
-
-    private fun createArticles(amountOfArticles: IntRange) {
 
 
-        for (index in amountOfArticles) {
-//            DateTimeFormatter.ISO_INSTANT.format(Instant.now())
-            val userName = "user" + index
-            val src = Source(name = "Newspaper" + index)
-            var atcl = Article(
-                source = src,
-                author = "author $index",
-                title = "Title $index",
-                url = "http://google.com",
-                publishedAt = "just now"
-            )
-            
-            //When using this map there is no need to figure out what article binds with what view
-            when (index) {
-                0 -> {
-                    mapOfArticles.put(binding.textView, atcl)
-                }
-                1 -> {
-                    mapOfArticles.put(binding.textView2, atcl)
-                }
-                2 -> {
-                    mapOfArticles.put(binding.textView3, atcl)
-                }
-                3 -> {
-                    mapOfArticles.put(binding.textView4, atcl)
-                }
-                4 -> {
-                    mapOfArticles.put(binding.textView5, atcl)
-                }
-            }
 
-
-//            arrayOfAticles.add(atcl)
-        }
-
-
-    }
 }
