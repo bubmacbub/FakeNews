@@ -18,7 +18,8 @@ class NewsService {
                 title = "Title $index",
                 url = "http://google.com",
                 publishedAt = "just now",
-                description = "some really long string that nobody cares about reading cause these are just e ipsum pluars"
+                description = "Description that really helps version $index",
+                content ="Some really long content that makes this seem like some sort of real news.  But we all know it isn't.  To be honest this content isn't even really that long compared to how long winded writers are these days.  Bloggers just telling us their feelings on subjects and their opinions aren't based on facts.  This is almost as bad as old news that would skew facts to how their audeince likes to recive information but either way this is a short paragraph compared to them."
             )
             arrayOfAticles.add( atcl)
 
