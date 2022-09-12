@@ -16,6 +16,9 @@ data class Article (
 
 
 ) {
+    /**
+     * This override is for the tiny version of this model
+     */
     override fun toString(): String {
         var concatString: String = ""
         var _title: StringBuilder = StringBuilder();
