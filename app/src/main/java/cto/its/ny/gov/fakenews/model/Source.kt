@@ -1,11 +1,15 @@
 package cto.its.ny.gov.fakenews.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import cto.its.ny.gov.fakenews.util.constants.SourceCategories
 import cto.its.ny.gov.fakenews.util.constants.SourceCountries
 import cto.its.ny.gov.fakenews.util.constants.SourceLanguages
+import kotlinx.parcelize.Parcelize
 
 
+@Parcelize
 data class Source (
     @SerializedName("id"          ) var id          : String? = null,
     @SerializedName("name"        ) var name        : String,
@@ -15,4 +19,4 @@ data class Source (
     @SerializedName("language"    ) var language    : SourceLanguages?,
     @SerializedName("country"     ) var country     : SourceCountries? = null
 
-)
+) : Parcelable
