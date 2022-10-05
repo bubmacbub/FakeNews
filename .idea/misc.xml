@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/repos/proto/android/FakeNews/app/src/main/res/layout/activity_main.xml" value="0.1947463768115942" />
+        <entry key="..\:/repos/proto/android/FakeNews/app/src/main/res/layout/activity_main_navgraph.xml" value="0.1947463768115942" />
+        <entry key="..\:/repos/proto/android/FakeNews/app/src/main/res/layout/article_view_item_list_holder.xml" value="0.4" />
+        <entry key="..\:/repos/proto/android/FakeNews/app/src/main/res/layout/fragment_dashboard.xml" value="0.12360688956433637" />
         <entry key="..\:/repos/proto/android/training/app/src/main/res/layout/activity_article_detail.xml" value="0.1" />
         <entry key="..\:/repos/proto/android/training/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/repos/proto/android/training/app/src/main/res/layout/article_view.xml" value="0.264" />

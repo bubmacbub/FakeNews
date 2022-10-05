@@ -28,8 +28,11 @@ class MainActivity : AppCompatActivity() , ArticleViewListAdapter.ArticleClickLi
 
 //        installSplashScreen()
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
+
+
 
         itemListRecyclerView = binding.itemListRecyclerView
 //            findViewById(R.id.itemListRecyclerView)
@@ -53,7 +56,10 @@ class MainActivity : AppCompatActivity() , ArticleViewListAdapter.ArticleClickLi
 
         setContentView(view)
 
-
+        binding.floatingActionButton.setOnClickListener{
+            val intent = Intent(this, MainActivityNav::class.java)
+            startActivity(intent)
+        }
 
     }
 

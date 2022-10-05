@@ -2,4 +2,8 @@
 	<string name="app_name">FakeNews</string>
 	<string name="author">Author:</string>
 	<string name="title">Title</string>
+	<string name="title_activity_main_nav">MainActivityNav</string>
+	<string name="title_home">Home</string>
+	<string name="title_dashboard">Dashboard</string>
+	<string name="title_notifications">Notifications</string>
 </resources>
